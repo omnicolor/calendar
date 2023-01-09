@@ -10,9 +10,17 @@
             "Omnicolor\\Calendar\\": "src/"
         }
     },
+    "config": {
+        "sort-packages": true
+    },
     "description": "Package for handling a calendar with notes and events",
     "license": "MIT",
     "name": "omnicolor/calendar",
     "type": "library",
-    "require": {}
+    "require": {
+        "php": "^8.0"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master"
+    }
 }
