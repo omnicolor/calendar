@@ -20,18 +20,22 @@
         "php": "^8.0"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.13",
         "phpstan/phpstan": "^1.9",
         "phpstan/phpstan-strict-rules": "^1.4",
         "roave/security-advisories": "dev-master"
     },
     "scripts": {
         "all": [
+            "@cs-fix",
             "@phpstan"
         ],
+        "cs-fix": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --dry-run --config=php-cs-fixer.php -v --using-cache=no --diff",
         "phpstan": "phpstan --xdebug analyze"
     },
     "scripts-descriptions": {
         "all": "Run all static analysis and tests with coverage",
+        "cs-fix": "Run php-cs-fixer on the entire codebase",
         "phpstan": "Run PHPstan on the entire codebase"
     },
     "type": "library"
