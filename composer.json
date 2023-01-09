@@ -1,0 +1,18 @@
+{
+    "authors": [
+        {
+            "name": "Omni Adams",
+            "email": "omni@digitaldarkness.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Omnicolor\\Calendar\\": "src/"
+        }
+    },
+    "description": "Package for handling a calendar with notes and events",
+    "license": "MIT",
+    "name": "omnicolor/calendar",
+    "type": "library",
+    "require": {}
+}
