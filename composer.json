@@ -23,20 +23,26 @@
         "friendsofphp/php-cs-fixer": "^3.13",
         "phpstan/phpstan": "^1.9",
         "phpstan/phpstan-strict-rules": "^1.4",
+        "phpunit/phpunit": "^9.5",
         "roave/security-advisories": "dev-master"
     },
     "scripts": {
         "all": [
+            "@coverage",
             "@cs-fix",
             "@phpstan"
         ],
+        "coverage": "phpunit --coverage-html=vendor/coverage",
         "cs-fix": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --dry-run --config=php-cs-fixer.php -v --using-cache=no --diff",
-        "phpstan": "phpstan --xdebug analyze"
+        "phpstan": "phpstan --xdebug analyze",
+        "test": "phpunit"
     },
     "scripts-descriptions": {
         "all": "Run all static analysis and tests with coverage",
+        "coverage": "Create a PHPUnit code coverage report in vendor/coverage",
         "cs-fix": "Run php-cs-fixer on the entire codebase",
-        "phpstan": "Run PHPstan on the entire codebase"
+        "phpstan": "Run PHPstan on the entire codebase",
+        "test": "Run all PHPUnit tests"
     },
     "type": "library"
 }
