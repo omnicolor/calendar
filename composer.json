@@ -16,11 +16,22 @@
     "description": "Package for handling a calendar with notes and events",
     "license": "MIT",
     "name": "omnicolor/calendar",
-    "type": "library",
     "require": {
         "php": "^8.0"
     },
     "require-dev": {
+        "phpstan/phpstan": "^1.9",
         "roave/security-advisories": "dev-master"
-    }
+    },
+    "scripts": {
+        "all": [
+            "@phpstan"
+        ],
+        "phpstan": "phpstan --xdebug analyze"
+    },
+    "scripts-descriptions": {
+        "all": "Run all static analysis and tests with coverage",
+        "phpstan": "Run PHPstan on the entire codebase"
+    },
+    "type": "library"
 }
