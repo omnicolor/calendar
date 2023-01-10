@@ -34,7 +34,7 @@
             "@cs-fix",
             "@phpstan"
         ],
-        "coverage": "phpunit --coverage-text --coverage-html=vendor/coverage",
+        "coverage": "XDEBUG_MODE=coverage phpunit --coverage-text --coverage-html=vendor/coverage",
         "cs-fix": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --dry-run --config=php-cs-fixer.php -v --using-cache=no --diff",
         "phpstan": "phpstan --xdebug analyze",
         "test": "phpunit"
