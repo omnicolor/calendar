@@ -144,4 +144,39 @@ final class CalendarTest extends TestCase
         $calendar->extend(new Date('2010-01-15'));
         self::assertCount(31, $calendar);
     }
+
+    public function testStoringArbitraryData(): void
+    {
+        $calendar = new Calendar(new Date('2080-01-01'), new Date('2080-01-31'));
+        $calendar[new Date('2080-01-02')] = (object)[
+            'rating' => 5,
+            'description' => 'We barely survived New Years, only losing a finger',
+            'karma' => 6,
+            'nuyen' => 1200,
+        ];
+
+        $entry = $calendar[new Date('2080-01-02')];
+        self::assertSame(5, $entry->rating);
+        self::assertSame(
+            'We barely survived New Years, only losing a finger',
+            $entry->description,
+        );
+        self::assertSame(6, $entry->karma);
+        self::assertSame(1200, $entry->nuyen);
+    }
+
+    public function testIteration(): void
+    {
+        $calendar = new Calendar(new Date('2016-01-01'), new Date('2016-01-05'));
+        $expected = [
+            '2016-01-01',
+            '2016-01-02',
+            '2016-01-03',
+            '2016-01-04',
+            '2016-01-05',
+        ];
+        foreach ($calendar as $date => $data) {
+            self::assertSame(array_shift($expected), $date->toDateString());
+        }
+    }
 }

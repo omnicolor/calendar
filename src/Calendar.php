@@ -9,11 +9,13 @@ use Carbon\CarbonImmutable as Date;
 use Carbon\CarbonPeriod;
 use Countable;
 use InvalidArgumentException;
+use Iterator;
 
 /**
  * @implements ArrayAccess<Date, mixed>
+ * @implements Iterator<Date, mixed>
  */
-class Calendar implements ArrayAccess, Countable
+class Calendar implements ArrayAccess, Countable, Iterator
 {
     protected CalendarStorage $data;
     protected Date $end;
@@ -27,6 +29,7 @@ class Calendar implements ArrayAccess, Countable
         $this->end = $end;
 
         $period = new CarbonPeriod($start, $end);
+        $period->setDateClass(Date::class);
         /** @var Date $date */
         foreach ($period as $date) {
             $this->data->attach($date);
@@ -35,7 +38,12 @@ class Calendar implements ArrayAccess, Countable
 
     public function count(): int
     {
-        return count($this->data);
+        return $this->data->count();
+    }
+
+    public function current(): mixed
+    {
+        return $this->data[$this->data->current()];
     }
 
     /**
@@ -67,6 +75,16 @@ class Calendar implements ArrayAccess, Countable
     public function getStart(): Date
     {
         return $this->start;
+    }
+
+    public function key(): Date
+    {
+        return $this->data->current();
+    }
+
+    public function next(): void
+    {
+        $this->data->next();
     }
 
     public function offsetExists(mixed $offset): bool
@@ -107,5 +125,15 @@ class Calendar implements ArrayAccess, Countable
         }
 
         $this->data->detach($offset);
+    }
+
+    public function rewind(): void
+    {
+        $this->data->rewind();
+    }
+
+    public function valid(): bool
+    {
+        return $this->data->valid();
     }
 }
