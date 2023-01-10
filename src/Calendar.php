@@ -49,7 +49,7 @@ class Calendar implements ArrayAccess, Countable
     {
         if ($date < $this->start) {
             $period = new CarbonPeriod($date, $this->start, CarbonPeriod::EXCLUDE_END_DATE);
-        } elseif ($date > $this->start) {
+        } elseif ($date > $this->end) {
             $period = new CarbonPeriod($this->end, $date, CarbonPeriod::EXCLUDE_START_DATE);
         } else {
             return;
