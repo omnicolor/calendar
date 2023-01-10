@@ -7,7 +7,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Omnicolor\\Calendar\\": "src/"
+            "Omnicolor\\Calendar\\": "src/",
+            "Omnicolor\\Calendar\\Tests\\": "tests/"
         }
     },
     "config": {
@@ -17,7 +18,8 @@
     "license": "MIT",
     "name": "omnicolor/calendar",
     "require": {
-        "php": "^8.0"
+        "php": "^8.0",
+        "nesbot/carbon": "^2.65"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.13",
