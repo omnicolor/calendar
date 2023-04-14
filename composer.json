@@ -31,17 +31,17 @@
     },
     "scripts": {
         "all": [
-            "@cs-fix",
+            "@php-cs-fixer",
             "@phpcs",
             "@phpstan",
             "@coverage"
         ],
         "coverage": "XDEBUG_MODE=coverage phpunit --coverage-text --coverage-html=vendor/coverage",
-        "cs-fix": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --dry-run --config=php-cs-fixer.php -v --diff",
+        "php-cs-fixer": "php-cs-fixer fix --dry-run --config=php-cs-fixer.php -v --diff",
         "phpcs": "phpcs -p --colors --cache",
         "phpstan": "phpstan --xdebug analyze",
         "style": [
-            "@cs-fix",
+            "@php-cs-fixer",
             "@phpcs"
         ],
         "test": "phpunit"
