@@ -1,0 +1,42 @@
+name: Unit Tests & Coverage
+
+on: [push]
+
+jobs:
+  Code-Coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install PHP with extensions
+        uses: shivammathur/setup-php@master
+        with:
+          tools: composer:v2
+          php-version: 8.2
+
+      - name: Install Composer dependencies and app configuration
+        run: composer install --no-progress --no-interaction
+
+      - name: Execute unit tests with code coverage
+        run: vendor/bin/phpunit --coverage-clover public/coverage/clover.xml
+
+      - if: github.event_name == 'push' && ! contains(github.event.push.user.login, 'dependabot[bot]')
+        name: Monitor coverage
+        uses: slavcodev/coverage-monitor-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          coverage_path: public/coverage/clover.xml
+          threshold_alert: 80
+          threshold_warning: 95
+
+      - name: Generate coverage badge
+        uses: timkrase/phpunit-coverage-badge@v1.2.1
+        with:
+          push_badge: true
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          report: public/coverage/clover.xml
+
+      - name: Retrieve the logs
+        if: ${{ failure() }}
+        run: cat storage/logs/*
