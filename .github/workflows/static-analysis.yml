@@ -24,3 +24,21 @@ jobs:
 
       - name: "Check syntax (php-parallel-lint)"
         run: vendor/bin/parallel-lint src tests
+
+  PHPStan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v3
+
+      - name: "Install PHP w/ Extensions"
+        uses: shivammathur/setup-php@master
+        with:
+          php-version: 8.2
+          coverage: none
+
+      - name: "Install Composer dependencies & app config"
+        run: composer install --no-progress --no-interaction
+
+      - name: "Run PHPStan analysis"
+        run: vendor/bin/phpstan analyze
