@@ -42,7 +42,7 @@
         "lint": "parallel-lint --colors src tests",
         "php-cs-fixer": "php-cs-fixer fix --dry-run --config=php-cs-fixer.php -v --diff",
         "phpcs": "phpcs -p --colors --cache",
-        "phpstan": "phpstan --xdebug analyze",
+        "phpstan": "phpstan analyze",
         "style": [
             "@php-cs-fixer",
             "@phpcs"
