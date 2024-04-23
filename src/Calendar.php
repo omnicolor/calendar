@@ -63,7 +63,7 @@ class Calendar implements ArrayAccess, Countable, Iterator
             return;
         }
         foreach ($period as $newDate) {
-            $this->data->attach($date);
+            $this->data->attach($newDate);
         }
     }
 

@@ -30,7 +30,11 @@ class BasicHtmlDecorator implements DecoratorInterface
         }
 
         foreach ($this->calendar as $date => $entry) {
-            $html .= '<div class="day">' . $date->day . '</div>';
+            $html .= '<div class="day">' . $date->day;
+            if (null !== $entry) {
+                $html .= '*';
+            }
+            $html .= '</div>';
             if (6 === $date->dayOfWeek && $date->day < $daysInMonth) {
                 $html .= '</div><div class="week">';
             }
