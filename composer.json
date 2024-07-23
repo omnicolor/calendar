@@ -37,6 +37,7 @@
             "@php-cs-fixer",
             "@phpcs",
             "@phpstan",
+            "@psalm",
             "@coverage"
         ],
         "coverage": "XDEBUG_MODE=coverage phpunit --coverage-text --coverage-html=vendor/coverage",
@@ -44,6 +45,12 @@
         "php-cs-fixer": "php-cs-fixer fix --dry-run --config=php-cs-fixer.php -v --diff",
         "phpcs": "phpcs -p --colors --cache",
         "phpstan": "phpstan analyze",
+        "psalm": "psalm",
+        "static": [
+            "@lint",
+            "@phpstan",
+            "@psalm"
+        ],
         "style": [
             "@php-cs-fixer",
             "@phpcs"
@@ -53,9 +60,12 @@
     "scripts-descriptions": {
         "all": "Run all static analysis and tests with coverage",
         "coverage": "Create a PHPUnit code coverage report in vendor/coverage",
-        "cs-fix": "Run php-cs-fixer on the entire codebase",
         "lint": "Run lint across code to make sure it's syntactically valid",
+        "php-cs-fixer": "Run php-cs-fixer on the entire codebase",
         "phpstan": "Run PHPstan on the entire codebase",
+        "psalm": "Run Psalm",
+        "static": "Run static analysis (Lint, PHPStan, and Psalm)",
+        "style": "Run PHPCodesniffer and php-cs-fixer",
         "test": "Run all PHPUnit tests"
     },
     "type": "library"
