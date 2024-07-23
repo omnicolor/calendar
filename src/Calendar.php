@@ -20,6 +20,9 @@ class Calendar implements ArrayAccess, Countable, Iterator
     protected CalendarStorage $data;
     protected Date $end;
 
+    /**
+     * @psalm-suppress PossiblyUnusedMethod
+     */
     public function __construct(protected Date $start, ?Date $end = null)
     {
         $this->data = new CalendarStorage();
@@ -51,7 +54,7 @@ class Calendar implements ArrayAccess, Countable, Iterator
      *
      * If the given date is before the calendar's start date, prepends dates.
      * Similiarly, if the date is after the calendar's end date, appends dates.
-     * @param Date $date
+     * @psalm-suppress PossiblyUnusedMethod
      */
     public function extend(Date $date): void
     {
@@ -62,6 +65,7 @@ class Calendar implements ArrayAccess, Countable, Iterator
         } else {
             return;
         }
+        /** @var Date $newDate */
         foreach ($period as $newDate) {
             $this->data->attach($newDate);
         }

@@ -8,6 +8,9 @@ use Carbon\CarbonImmutable as Date;
 use Omnicolor\Calendar\Calendar;
 use OutOfBoundsException;
 
+/**
+ * @psalm-suppress UnusedClass
+ */
 class BasicHtmlDecorator implements DecoratorInterface
 {
     public function __construct(protected Calendar $calendar, protected Date $date)
@@ -29,6 +32,7 @@ class BasicHtmlDecorator implements DecoratorInterface
             $html .= '<div class="day"></div>';
         }
 
+        /** @var mixed $entry */
         foreach ($this->calendar as $date => $entry) {
             $html .= '<div class="day">' . $date->day;
             if (null !== $entry) {
