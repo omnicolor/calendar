@@ -42,7 +42,7 @@
         ],
         "coverage": "XDEBUG_MODE=coverage phpunit --coverage-text --coverage-html=vendor/coverage",
         "lint": "parallel-lint --colors src tests",
-        "php-cs-fixer": "php-cs-fixer fix --dry-run --config=php-cs-fixer.php -v --diff",
+        "php-cs-fixer": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --dry-run --config=php-cs-fixer.php -v --diff",
         "phpcs": "phpcs -p --colors --cache",
         "phpstan": "phpstan analyze",
         "psalm": "psalm",
