@@ -5,17 +5,33 @@ on: [push]
 jobs:
   Code-Coverage:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version:
+          - "8.3"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install PHP with extensions
+      - name: Install PHP
         uses: shivammathur/setup-php@master
         with:
           tools: composer:v2
-          php-version: 8.2
+          php-version: ${{ matrix.php-version }}
 
-      - name: Install Composer dependencies and app configuration
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Composer
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Install Composer dependencies
         run: composer install --no-progress --no-interaction
 
       - name: Execute unit tests with code coverage

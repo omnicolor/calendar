@@ -3,44 +3,45 @@ name: PHP Static Analysis
 on: pull_request
 
 jobs:
-  lint:
+  Lint:
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
         php-version:
-          - 8.2
+          - "8.2"
+          - "8.3"
     steps:
-      - name: "Checkout repository"
+      - name: Checkout repository
         uses: "actions/checkout@v4"
 
-      - name: "Install PHP w/ Extensions"
+      - name: Install PHP with Extensions
         uses: shivammathur/setup-php@master
         with:
           php-version: ${{ matrix.php-version }}
           coverage: none
 
-      - name: "Install Composer dependencies"
+      - name: Install Composer dependencies
         run: composer install --no-progress --no-interaction
 
-      - name: "Check syntax (php-parallel-lint)"
+      - name: Check syntax (php-parallel-lint)
         run: vendor/bin/parallel-lint src tests
 
   PHPStan:
     runs-on: ubuntu-latest
     steps:
-      - name: "Checkout"
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: "Install PHP w/ Extensions"
+      - name: Install PHP
         uses: shivammathur/setup-php@master
         with:
-          php-version: 8.2
+          php-version: 8.3
           coverage: none
 
-      - name: "Install Composer dependencies & app config"
+      - name: Install Composer dependencies
         run: composer install --no-progress --no-interaction
 
-      - name: "Run PHPStan analysis"
+      - name: Run PHPStan analysis
         run: vendor/bin/phpstan analyze
 
   Psalm:
