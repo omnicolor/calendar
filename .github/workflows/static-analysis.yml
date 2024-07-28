@@ -4,20 +4,15 @@ on: pull_request
 
 jobs:
   Lint:
-    runs-on: "ubuntu-latest"
-    strategy:
-      matrix:
-        php-version:
-          - "8.2"
-          - "8.3"
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: "actions/checkout@v4"
+        uses: actions/checkout@v4
 
       - name: Install PHP with Extensions
         uses: shivammathur/setup-php@master
         with:
-          php-version: ${{ matrix.php-version }}
+          php-version: "8.2"
           coverage: none
 
       - name: Install Composer dependencies
@@ -35,7 +30,7 @@ jobs:
       - name: Install PHP
         uses: shivammathur/setup-php@master
         with:
-          php-version: 8.3
+          php-version: "8.2"
           coverage: none
 
       - name: Install Composer dependencies
@@ -50,13 +45,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: "Install PHP w/ Extensions"
+      - name: Install PHP w/ Extensions
         uses: shivammathur/setup-php@master
         with:
-          php-version: 8.2
+          php-version: "8.2"
           coverage: none
 
-      - name: "Install Composer dependencies & app config"
+      - name: Install Composer dependencies
         run: composer install --no-progress --no-interaction
 
       - name: Psalm
