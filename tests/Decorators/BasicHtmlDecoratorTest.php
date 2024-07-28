@@ -99,6 +99,28 @@ final class BasicHtmlDecoratorTest extends TestCase
         self::assertSame($expected, (string)$decorator);
     }
 
+    public function testCalendarWithEntry(): void
+    {
+        $calendar = new Calendar(new Date('2023-01-01'), new Date('2023-01-05'));
+        $calendar[new Date('2023-01-01')] = (object)['testing' => true];
+
+        $decorator = new BasicHtmlDecorator($calendar, new Date('2023-01-01'));
+        $expected = '<div class="month">'
+            . '<div class="week">'
+            . '<div class="day">1*</div>'
+            . '<div class="day">2</div>'
+            . '<div class="day">3</div>'
+            . '<div class="day">4</div>'
+            . '<div class="day">5</div>'
+            . '<div class="day"></div>'
+            . '<div class="day"></div>'
+            . '<div class="day"></div>'
+            . '<div class="day"></div>'
+            . '</div>'
+            . '</div>';
+        self::assertSame($expected, (string)$decorator);
+    }
+
     public function testRenderCalenderWithDateEarly(): void
     {
         self::expectException(OutOfBoundsException::class);
