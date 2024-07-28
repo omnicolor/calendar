@@ -1,5 +1,7 @@
 # Calendar
 
+![Code Coverage Badge](./coverage_badge.svg)
+
 This package allows storing arbitrary data attached to a date. In my particular use case, I wanted to be able to store information about what's going on in a role playing game, to allow rendering a rich history of the game so far.
 
 ## Usage
