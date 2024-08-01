@@ -13,11 +13,10 @@ use SplObjectStorage;
 class CalendarStorage extends SplObjectStorage
 {
     /**
-     * @param Date $date
-     * @return string
+     * @param Date $object
      */
-    public function getHash(object $date): string
+    public function getHash(object $object): string
     {
-        return $date->toDateString();
+        return $object->toDateString();
     }
 }
