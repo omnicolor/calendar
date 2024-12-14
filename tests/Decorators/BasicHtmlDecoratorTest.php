@@ -112,4 +112,32 @@ final class BasicHtmlDecoratorTest extends TestCase
         $calendar = new Calendar(new Date('2023-01-01'), new Date('2023-01-05'));
         new BasicHtmlDecorator($calendar, new Date('2023-01-06'));
     }
+
+    public function testRenderCalenderWithEntry(): void
+    {
+        $calendar = new Calendar(new Date('2023-02-01'), new Date('2023-02-04'));
+        $calendar[new Date('2023-02-02')] = (object)[
+            'description' => 'This is an event',
+            'details' => ['foo' => 'bar'],
+        ];
+        $decorator = new BasicHtmlDecorator($calendar, new Date('2023-02-03'));
+        $expected = '<div class="month">'
+            . '<div class="week">'
+            . '<div class="day"></div>'
+            . '<div class="day"></div>'
+            . '<div class="day"></div>'
+            . '<div class="day">1</div>'
+            . '<div class="day">2*</div>'
+            . '<div class="day">3</div>'
+            . '<div class="day">4</div>'
+            . '</div>'
+            . '<div class="week">'
+            . '<div class="day"></div>'
+            . '<div class="day"></div>'
+            . '<div class="day"></div>'
+            . '<div class="day"></div>'
+            . '</div>'
+            . '</div>';
+        self::assertSame($expected, (string)$decorator);
+    }
 }
