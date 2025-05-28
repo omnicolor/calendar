@@ -28,8 +28,7 @@
         "phpstan/phpstan-strict-rules": "^1.4",
         "phpunit/phpunit": "^9.5",
         "roave/security-advisories": "dev-master",
-        "squizlabs/php_codesniffer": "^3.7",
-        "vimeo/psalm": "^5.9"
+        "squizlabs/php_codesniffer": "^3.7"
     },
     "scripts": {
         "all": [
@@ -37,7 +36,6 @@
             "@php-cs-fixer",
             "@phpcs",
             "@phpstan",
-            "@psalm",
             "@coverage"
         ],
         "coverage": "XDEBUG_MODE=coverage phpunit --coverage-text --coverage-html=vendor/coverage",
@@ -45,11 +43,9 @@
         "php-cs-fixer": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --dry-run --config=php-cs-fixer.php -v --diff",
         "phpcs": "phpcs -p --colors --cache",
         "phpstan": "phpstan analyze",
-        "psalm": "psalm",
         "static": [
             "@lint",
-            "@phpstan",
-            "@psalm"
+            "@phpstan"
         ],
         "style": [
             "@php-cs-fixer",
@@ -63,8 +59,7 @@
         "lint": "Run lint across code to make sure it's syntactically valid",
         "php-cs-fixer": "Run php-cs-fixer on the entire codebase",
         "phpstan": "Run PHPstan on the entire codebase",
-        "psalm": "Run Psalm",
-        "static": "Run static analysis (Lint, PHPStan, and Psalm)",
+        "static": "Run static analysis (Lint and PHPStan)",
         "style": "Run PHPCodesniffer and php-cs-fixer",
         "test": "Run all PHPUnit tests"
     },
