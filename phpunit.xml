@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
-    bootstrap="phpunit-bootstrap.php"
-    colors="true"
-    convertDeprecationsToExceptions="true"
-    convertErrorsToExceptions="true"
-    convertNoticesToExceptions="true"
-    convertWarningsToExceptions="true"
-    enforceTimeLimit="true"
-    executionOrder="random"
-    timeoutForMediumTests="15"
->
+<phpunit beStrictAboutCoverageMetadata="true"
+    beStrictAboutOutputDuringTests="true"
+    bootstrap="vendor/autoload.php"
+    cacheDirectory=".phpunit.cache"
+    displayDetailsOnPhpunitDeprecations="true"
+    executionOrder="depends,defects"
+    failOnPhpunitDeprecation="true"
+    failOnRisky="true"
+    failOnWarning="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd">
 
     <testsuites>
-        <testsuite name="Tests">
-            <directory suffix="Test.php">./tests</directory>
+        <testsuite name="default">
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
 
-    <coverage processUncoveredFiles="true">
+    <source ignoreIndirectDeprecations="true" restrictNotices="true" restrictWarnings="true">
         <include>
-            <directory suffix=".php">./src</directory>
+            <directory>src</directory>
         </include>
-    </coverage>
-
+    </source>
 </phpunit>
