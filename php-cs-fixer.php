@@ -58,7 +58,6 @@ $rules = [
     'magic_constant_casing' => true,
     'method_argument_space' => true,
     'modernize_types_casting' => true,
-    'modifier_keywords' => true,
     'multiline_comment_opening_closing' => true,
     'multiline_whitespace_before_semicolons' => [
         'strategy' => 'no_multi_line',
