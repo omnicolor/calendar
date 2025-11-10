@@ -12,7 +12,7 @@ jobs:
       - name: Install PHP with Extensions
         uses: shivammathur/setup-php@master
         with:
-          php-version: "8.2"
+          php-version: "8.3"
           coverage: none
 
       - name: Install Composer dependencies
@@ -30,7 +30,7 @@ jobs:
       - name: Install PHP
         uses: shivammathur/setup-php@master
         with:
-          php-version: "8.2"
+          php-version: "8.3"
           coverage: none
 
       - name: Install Composer dependencies
