@@ -13,7 +13,7 @@ jobs:
         uses: shivammathur/setup-php@master
         with:
           tools: composer:v2
-          php-version: "8.3"
+          php-version: "8.4"
 
       - name: Get Composer Cache Directory
         id: composer-cache

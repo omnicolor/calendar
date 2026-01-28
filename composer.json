@@ -18,7 +18,7 @@
     "license": "MIT",
     "name": "omnicolor/calendar",
     "require": {
-        "php": "^8.0",
+        "php": "^8.4",
         "nesbot/carbon": "^2.65"
     },
     "require-dev": {
