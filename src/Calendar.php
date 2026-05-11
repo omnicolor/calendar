@@ -20,9 +20,6 @@ class Calendar implements ArrayAccess, Countable, Iterator
     protected CalendarStorage $data;
     protected Date $end;
 
-    /**
-     * @psalm-suppress PossiblyUnusedMethod
-     */
     public function __construct(protected Date $start, ?Date $end = null)
     {
         $this->data = new CalendarStorage();
@@ -33,7 +30,11 @@ class Calendar implements ArrayAccess, Countable, Iterator
 
         $period = new CarbonPeriod($start, $end);
         $period->setDateClass(Date::class);
-        /** @var Date $date */
+
+        /**
+         * @var Date $date
+         * @phpstan-ignore foreach.nonIterable
+         */
         foreach ($period as $date) {
             $this->data->attach($date);
         }
@@ -53,19 +54,24 @@ class Calendar implements ArrayAccess, Countable, Iterator
      * Extend the calendar.
      *
      * If the given date is before the calendar's start date, prepends dates.
-     * Similiarly, if the date is after the calendar's end date, appends dates.
-     * @psalm-suppress PossiblyUnusedMethod
+     * Similarly, if the date is after the calendar's end date, appends dates.
      */
     public function extend(Date $date): void
     {
         if ($date < $this->start) {
-            $period = new CarbonPeriod($date, $this->start, CarbonPeriod::EXCLUDE_END_DATE);
+            $period = new CarbonPeriod($date, $this->start);
+            $period->excludeEndDate();
         } elseif ($date > $this->end) {
-            $period = new CarbonPeriod($this->end, $date, CarbonPeriod::EXCLUDE_START_DATE);
+            $period = new CarbonPeriod($this->end, $date);
+            $period->excludeStartDate();
         } else {
             return;
         }
-        /** @var Date $newDate */
+
+        /**
+         * @var Date $newDate
+         * @phpstan-ignore foreach.nonIterable
+         */
         foreach ($period as $newDate) {
             $this->data->attach($newDate);
         }
