@@ -1,25 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit beStrictAboutCoverageMetadata="true"
-    beStrictAboutOutputDuringTests="true"
-    bootstrap="vendor/autoload.php"
-    cacheDirectory=".phpunit.cache"
-    displayDetailsOnPhpunitDeprecations="true"
-    executionOrder="depends,defects"
-    failOnPhpunitDeprecation="true"
-    failOnRisky="true"
-    failOnWarning="true"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd">
-
-    <testsuites>
-        <testsuite name="default">
-            <directory>tests</directory>
-        </testsuite>
-    </testsuites>
-
-    <source ignoreIndirectDeprecations="true" restrictNotices="true" restrictWarnings="true">
-        <include>
-            <directory>src</directory>
-        </include>
-    </source>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" beStrictAboutCoverageMetadata="true" beStrictAboutOutputDuringTests="true" bootstrap="vendor/autoload.php" cacheDirectory=".phpunit.cache" displayDetailsOnPhpunitDeprecations="true" executionOrder="defects" failOnPhpunitDeprecation="true" failOnRisky="true" failOnWarning="true" xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd" resolveDependencies="true">
+  <testsuites>
+    <testsuite name="default">
+      <directory>tests</directory>
+    </testsuite>
+  </testsuites>
+  <source ignoreIndirectDeprecations="true" restrictNotices="true" restrictWarnings="true">
+    <include>
+      <directory>src</directory>
+    </include>
+  </source>
 </phpunit>
