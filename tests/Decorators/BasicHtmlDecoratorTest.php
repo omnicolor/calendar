@@ -8,11 +8,10 @@ use Carbon\CarbonImmutable as Date;
 use Omnicolor\Calendar\Calendar;
 use Omnicolor\Calendar\Decorators\BasicHtmlDecorator;
 use OutOfBoundsException;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @small
- */
+#[Small]
 final class BasicHtmlDecoratorTest extends TestCase
 {
     public function testEmptyCalendar(): void

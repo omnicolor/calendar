@@ -7,12 +7,11 @@ namespace Omnicolor\Calendar\Tests;
 use Carbon\CarbonImmutable as Date;
 use InvalidArgumentException;
 use Omnicolor\Calendar\Calendar;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-/**
- * @small
- */
+#[Small]
 final class CalendarTest extends TestCase
 {
     public function testStartEnd(): void

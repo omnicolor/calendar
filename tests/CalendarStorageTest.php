@@ -6,11 +6,10 @@ namespace Omnicolor\Calendar\Tests;
 
 use Carbon\CarbonImmutable as Date;
 use Omnicolor\Calendar\CalendarStorage;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @small
- */
+#[Small]
 final class CalendarStorageTest extends TestCase
 {
     public function testAddingMultipleDates(): void
