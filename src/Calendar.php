@@ -23,9 +23,7 @@ class Calendar implements ArrayAccess, Countable, Iterator
     public function __construct(protected Date $start, ?Date $end = null)
     {
         $this->data = new CalendarStorage();
-        if (null === $end) {
-            $end = $start;
-        }
+        $end ??= $start;
         $this->end = $end;
 
         $period = new CarbonPeriod($start, $end);
